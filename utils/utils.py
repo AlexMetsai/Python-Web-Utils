@@ -4,6 +4,6 @@
 import requests
 import xmltodict
 
-def load_xml_from_url(url):
+def xml_to_dict_from_url(url):
     response = requests.get(url)
     return xmltodict.parse(response.content)
