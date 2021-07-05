@@ -1,2 +1,3 @@
 # python-requests
-HTTP requests with python
+HTTP requests with python/
+Utilizing Python's 'Simple HTTP Server' for demo purposes.
