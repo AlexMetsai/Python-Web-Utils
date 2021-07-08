@@ -1,5 +1,6 @@
 # Alexandros I. Metsai
-# Serve a file over HTTP
+# alexmetsai@gmail.com
+# Serve a directory over HTTP
 
 import http.server
 import socketserver
