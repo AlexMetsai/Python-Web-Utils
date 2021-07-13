@@ -20,3 +20,15 @@ def fernet_encryptor(message, key):
     fernet = Fernet(key)
     enc_message = fernet.encrypt(message.encode())
     return enc_message
+
+def fernet_decryptor(message, key):
+    """
+    Fernet symmetric key cipher.
+
+    :param message: the message to be decrypted
+    :param key: encryption key
+    :return: decrypted message
+    """
+    fernet = Fernet(key)
+    dec_message = fernet.decrypt(message).decode()
+    return dec_message
