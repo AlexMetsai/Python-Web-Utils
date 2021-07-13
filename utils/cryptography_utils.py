@@ -32,3 +32,16 @@ def fernet_decryptor(message, key):
     fernet = Fernet(key)
     dec_message = fernet.decrypt(message).decode()
     return dec_message
+
+def aes_encryptor(message, key):
+    """
+    AES symmetric key cipher.
+
+    :param message: the message to be encrypted
+    :param key: encryption key
+    :return: encrypted message
+    """
+    cipher = AES.new(key, AES.MODE_EAX)
+    nonce = cipher.nonce
+    enc_message, tag = cipher.encrypt_and_digest(message.encode())
+    return nonce, enc_message, tag
