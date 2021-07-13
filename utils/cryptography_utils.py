@@ -21,6 +21,7 @@ def fernet_encryptor(message, key):
     enc_message = fernet.encrypt(message.encode())
     return enc_message
 
+
 def fernet_decryptor(message, key):
     """
     Fernet symmetric key cipher.
@@ -32,6 +33,7 @@ def fernet_decryptor(message, key):
     fernet = Fernet(key)
     dec_message = fernet.decrypt(message).decode()
     return dec_message
+
 
 def aes_encryptor(message, key):
     """
@@ -45,3 +47,23 @@ def aes_encryptor(message, key):
     nonce = cipher.nonce
     enc_message, tag = cipher.encrypt_and_digest(message.encode())
     return nonce, enc_message, tag
+
+
+def aes_decryptor(message, key, nonce, tag):
+    """
+    AES symmetric key cipher.
+
+    :param message: the message to be decrypted
+    :param key: encryption key
+    :param nonce: number used only once
+    :param tag: authentication tag
+    :return: decrypted message
+    """
+    cipher = AES.new(key, AES.MODE_EAX, nonce=nonce)
+    dec_message = cipher.decrypt(message).decode()
+    try:
+        cipher.verify(tag)
+        print("The message is authentic.")
+    except ValueError:
+        print("Incorrect key or corrupt message.")
+    return dec_message
