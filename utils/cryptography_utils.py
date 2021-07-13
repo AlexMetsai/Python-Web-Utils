@@ -67,3 +67,8 @@ def aes_decryptor(message, key, nonce, tag):
     except ValueError:
         print("Incorrect key or corrupt message.")
     return dec_message
+
+
+if __name__ == '__main__':
+    # add some functionality demonstration
+    pass
