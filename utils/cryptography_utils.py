@@ -81,6 +81,17 @@ def rsa_encryptor(message, public_key):
     return enc_message
 
 
+def rsa_decryptor(message, private_key):
+    """
+    RSA asymmetric key cipher.
+
+    :param message: the message to be decrypted
+    :param private_key: private decryption key
+    :return: decrypted message
+    """
+    dec_message = rsa.decrypt(message, private_key).decode()
+    return dec_message
+
 
 if __name__ == '__main__':
     # add some functionality demonstration
