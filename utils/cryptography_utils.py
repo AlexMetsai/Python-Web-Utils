@@ -69,6 +69,19 @@ def aes_decryptor(message, key, nonce, tag):
     return dec_message
 
 
+def rsa_encryptor(message, public_key):
+    """
+    RSA asymmetric key cipher.
+
+    :param message: the message to be encrypted
+    :param public_key: public encryption key
+    :return: encrypted message
+    """
+    enc_message = rsa.encrypt(message.encode(), public_key)
+    return enc_message
+
+
+
 if __name__ == '__main__':
     # add some functionality demonstration
     pass
