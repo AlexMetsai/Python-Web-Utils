@@ -94,5 +94,50 @@ def rsa_decryptor(message, private_key):
 
 
 if __name__ == '__main__':
-    # add some functionality demonstration
-    pass
+    # Example usage of the algorithms.
+
+    text = "This is a sample text."
+    test_type = 'AES'
+    test_all = True
+
+    if test_type == 'rsa' or test_all:
+        print("RSA asymmetric encryption:\n\n")
+        encryptor = rsa_encryptor
+        decryptor = rsa_decryptor
+
+        pub_key, priv_key = rsa.newkeys(512)
+        encmessage = encryptor(text, pub_key)
+        decmessage = decryptor(encmessage, priv_key)
+
+        print("Functionality Demonstration")
+        print("Original text: {}".format(text))
+        print("Encrypted text: {}".format(encmessage))
+        print("Decrypted text: {}\n".format(decmessage))
+
+    if test_type == 'fernet' or test_all:
+        print("Fernet symmetric encryption:\n\n")
+        encryptor = fernet_encryptor
+        decryptor = fernet_decryptor
+
+        cipher_key = Fernet.generate_key()
+        encmessage = encryptor(text, cipher_key)
+        decmessage = decryptor(encmessage, cipher_key)
+
+        print("Functionality Demonstration")
+        print("Original text: {}".format(text))
+        print("Encrypted text: {}".format(encmessage))
+        print("Decrypted text: {}\n".format(decmessage))
+
+    if test_type == 'AES' or test_all:
+        print("AES symmetric encryption:\n\n")
+        encryptor = aes_encryptor
+        decryptor = aes_decryptor
+
+        cipher_key = get_random_bytes(16)
+        encnonce, encmessage, enc_tag = encryptor(text, cipher_key)
+        decmessage = decryptor(encmessage, cipher_key, encnonce, enc_tag)
+
+        print("Functionality Demonstration")
+        print("Original text: {}".format(text))
+        print("Encrypted text: {}".format(encmessage))
+        print("Decrypted text: {}\n".format(decmessage))
