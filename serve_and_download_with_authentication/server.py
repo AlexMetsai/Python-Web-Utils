@@ -15,3 +15,8 @@ class AuthHTTPRequestHandler(SimpleHTTPRequestHandler):
         password = kwargs.pop("password")
         self._auth = base64.b64encode(f"{username}:{password}".encode()).decode()
         super().__init__(*args)
+
+    def do_HEAD(self):
+        self.send_response(200)
+        self.send_header("Content-type", "text/html")
+        self.end_headers()
