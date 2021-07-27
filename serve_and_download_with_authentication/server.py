@@ -26,3 +26,15 @@ class AuthHTTPRequestHandler(SimpleHTTPRequestHandler):
         self.send_header("WWW-Authenticate", 'Basic realm="Test"')
         self.send_header("Content-type", "text/html")
         self.end_headers()
+
+    def do_GET(self):
+        """ Present frontpage with user authentication. """
+        if self.headers.get("Authorization") == None:
+            self.do_AUTHHEAD()
+            self.wfile.write(b"no auth header received")
+        elif self.headers.get("Authorization") == "Basic " + self._auth:
+            SimpleHTTPRequestHandler.do_GET(self)
+        else:
+            self.do_AUTHHEAD()
+            self.wfile.write(self.headers.get("Authorization").encode())
+            self.wfile.write(b"not authenticated")
