@@ -2,9 +2,10 @@
 # alexmetsai@gmail.com
 
 from functools import partial
-from http.server import SimpleHTTPRequestHandler#, test
+from http.server import SimpleHTTPRequestHandler
 import base64
 import os
+import argparse
 
 
 class AuthHTTPRequestHandler(SimpleHTTPRequestHandler):
@@ -38,3 +39,30 @@ class AuthHTTPRequestHandler(SimpleHTTPRequestHandler):
             self.do_AUTHHEAD()
             self.wfile.write(self.headers.get("Authorization").encode())
             self.wfile.write(b"not authenticated")
+
+
+if __name__ == "__main__":
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--cgi", action="store_true", help="Run as CGI Server")
+    parser.add_argument(
+        "--bind",
+        "-b",
+        metavar="ADDRESS",
+        default="127.0.0.1",
+        help="Specify alternate bind address " "[default: all interfaces]",
+    )
+    parser.add_argument(
+        "--directory",
+        "-d",
+        default=os.getcwd(),
+        help="Specify alternative directory " "[default:current_directory/public]",
+    )
+    parser.add_argument(
+        "port",
+        action="store",
+        default=8000,
+        type=int,
+        nargs="?",
+        help="Specify alternate port [default: 8000]",
+    )
