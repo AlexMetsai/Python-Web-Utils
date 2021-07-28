@@ -66,3 +66,21 @@ if __name__ == "__main__":
         nargs="?",
         help="Specify alternate port [default: 8000]",
     )
+    parser.add_argument("--username", "-u", metavar="USERNAME")
+    parser.add_argument("--password", "-p", metavar="PASSWORD")
+    args = parser.parse_args()
+
+    handler_class = partial(
+        AuthHTTPRequestHandler,
+        username=args.username,
+        password=args.password,
+        directory=args.directory,
+    )
+    os.chdir('public')
+    #test(HandlerClass=handler_class, port=args.port, bind=args.bind)
+
+    # A few changes
+    import socketserver
+    with socketserver.TCPServer(("", args.port), handler_class) as httpd:
+        print("Server started at localhost:" + str(args.port))
+        httpd.serve_forever()
