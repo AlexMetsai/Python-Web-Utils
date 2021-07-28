@@ -1,12 +1,12 @@
 # Alexandros I. Metsai
 # alexmetsai@gmail.com
 
-from functools import partial
-from http.server import SimpleHTTPRequestHandler
 import base64
 import os
 import argparse
 
+from functools import partial
+from http.server import SimpleHTTPRequestHandler
 
 class AuthHTTPRequestHandler(SimpleHTTPRequestHandler):
     """ Main class to present webpages and authentication. """
