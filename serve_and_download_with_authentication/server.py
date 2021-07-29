@@ -8,6 +8,7 @@ import argparse
 from functools import partial
 from http.server import SimpleHTTPRequestHandler
 
+
 class AuthHTTPRequestHandler(SimpleHTTPRequestHandler):
     """ Main class to present webpages and authentication. """
 
@@ -77,9 +78,8 @@ if __name__ == "__main__":
         directory=args.directory,
     )
     os.chdir('public')
-    #test(HandlerClass=handler_class, port=args.port, bind=args.bind)
 
-    # A few changes
+    # Serve
     import socketserver
     with socketserver.TCPServer(("", args.port), handler_class) as httpd:
         print("Server started at localhost:" + str(args.port))
