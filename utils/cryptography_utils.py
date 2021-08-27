@@ -1,6 +1,10 @@
-# Alexandros I. Metsai
-# alexmetsai@gmail.com
-# Various utilities for ciphering messages.
+"""
+Alexandros I. Metsai
+alexmetsai@gmail.com
+MIT License
+
+Various utilities for ciphering messages.
+"""
 
 import rsa
 
@@ -15,6 +19,7 @@ def fernet_encryptor(message, key):
 
     :param message: The message to be encrypted
     :param key: Encryption key
+
     :return: Encrypted message
     """
     fernet = Fernet(key)
@@ -28,6 +33,7 @@ def fernet_decryptor(message, key):
 
     :param message: the message to be decrypted
     :param key: encryption key
+
     :return: decrypted message
     """
     fernet = Fernet(key)
@@ -41,6 +47,7 @@ def aes_encryptor(message, key):
 
     :param message: the message to be encrypted
     :param key: encryption key
+
     :return: encrypted message
     """
     cipher = AES.new(key, AES.MODE_EAX)
@@ -57,6 +64,7 @@ def aes_decryptor(message, key, nonce, tag):
     :param key: encryption key
     :param nonce: number used only once
     :param tag: authentication tag
+
     :return: decrypted message
     """
     cipher = AES.new(key, AES.MODE_EAX, nonce=nonce)
@@ -75,6 +83,7 @@ def rsa_encryptor(message, public_key):
 
     :param message: the message to be encrypted
     :param public_key: public encryption key
+    
     :return: encrypted message
     """
     enc_message = rsa.encrypt(message.encode(), public_key)
@@ -87,6 +96,7 @@ def rsa_decryptor(message, private_key):
 
     :param message: the message to be decrypted
     :param private_key: private decryption key
+
     :return: decrypted message
     """
     dec_message = rsa.decrypt(message, private_key).decode()
