@@ -1,7 +1,7 @@
 """
 Various utilities for ciphering messages.
 
-Copyright (C) 2019 - 2021 Alexandros I. Metsai
+Copyright (C) 2021 Alexandros I. Metsai
 alexmetsai@gmail.com
 
 This program is free software; you can redistribute it and/or
